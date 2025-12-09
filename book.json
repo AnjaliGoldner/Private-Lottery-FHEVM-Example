@@ -1,0 +1,37 @@
+{
+  "root": "./docs",
+  "structure": {
+    "readme": "SUMMARY.md"
+  },
+  "title": "Private Lottery FHEVM Example",
+  "description": "Comprehensive guide to privacy-preserving smart contracts using FHEVM",
+  "author": "FHEVM Examples",
+  "isbn": "",
+  "language": "en",
+  "gitbook": "3.0.0",
+  "styles": {
+    "website": "styles/website.css"
+  },
+  "plugins": [
+    "search",
+    "sharing",
+    "fontsettings",
+    "theme-default"
+  ],
+  "pluginsConfig": {
+    "sharing": {
+      "facebook": false,
+      "twitter": false,
+      "google": false,
+      "weibo": false,
+      "instapaper": false,
+      "vk": false,
+      "all": []
+    },
+    "fontsettings": {
+      "theme": "white",
+      "family": "sans",
+      "size": 2
+    }
+  }
+}
