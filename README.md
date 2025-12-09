@@ -2,6 +2,10 @@
 
 A standalone Hardhat-based FHEVM example demonstrating a privacy-preserving lottery system using Fully Homomorphic Encryption (FHE) smart contracts.
 
+[Private Lottery FHEVM Example.mp4](https://streamable.com/k3ker2)
+
+[Live Demo](https://private-lottery-fhevm-example.vercel.app/)
+
 ## Overview
 
 This project is a complete, production-quality example for the Zama Bounty Program that showcases how to build privacy-preserving smart contracts with encrypted state management using FHEVM. The lottery system demonstrates key FHE concepts in a practical, real-world application:
