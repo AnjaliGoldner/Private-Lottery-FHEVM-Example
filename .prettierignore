@@ -1,0 +1,13 @@
+artifacts
+cache
+coverage
+node_modules
+types
+dist
+*.log
+*.swp
+*.swo
+*~
+.DS_Store
+.env
+.env.local
