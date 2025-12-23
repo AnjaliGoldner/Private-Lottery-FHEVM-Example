@@ -2,7 +2,7 @@
 
 A standalone Hardhat-based FHEVM example demonstrating a privacy-preserving lottery system using Fully Homomorphic Encryption (FHE) smart contracts.
 
-[Private Lottery FHEVM Example.mp4](https://streamable.com/k3ker2)
+[Private Lottery FHEVM Example.mp4](https://youtu.be/JTP_jWnVlxs)
 
 [Live Demo](https://private-lottery-fhevm-example.vercel.app/)
 
