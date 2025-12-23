@@ -17,6 +17,204 @@ interface ExampleDoc {
 }
 
 const EXAMPLES: Record<string, ExampleDoc> = {
+  "fhe-counter": {
+    name: "fhe-counter",
+    title: "FHE Counter",
+    description: "Basic encrypted counter demonstrating increment and decrement operations",
+    category: "basic",
+    sections: [
+      {
+        title: "Overview",
+        content: `A simple counter using encrypted integers (euint32) to demonstrate basic FHE operations.
+
+## Key Concepts
+
+- **Encrypted State Storage**: Counter stored as encrypted value
+- **FHE Arithmetic**: Addition and subtraction on encrypted values
+- **Permission Management**: Using FHE.allowThis() and FHE.allow()`,
+      },
+      {
+        title: "Core Features",
+        content: `- Encrypted counter initialization
+- Increment by encrypted value
+- Decrement by encrypted value
+- Proper permission grants
+- Event emission for operations`,
+      },
+    ],
+  },
+  "encrypted-storage": {
+    name: "encrypted-storage",
+    title: "Encrypted Storage",
+    description: "Demonstrates storing and managing multiple encrypted values with different types",
+    category: "basic",
+    sections: [
+      {
+        title: "Overview",
+        content: `Shows how to store single and multiple encrypted values with proper permission management.
+
+## Key Concepts
+
+- **Multiple Encrypted Types**: euint32 and euint64 storage
+- **Batch Operations**: Store multiple values in one transaction
+- **Value Updates**: Add to existing encrypted values
+- **Permission Model**: Proper access control patterns`,
+      },
+    ],
+  },
+  "access-control": {
+    name: "access-control",
+    title: "Access Control Demonstration",
+    description: "Comprehensive guide to FHE access control patterns and permission management",
+    category: "basic",
+    sections: [
+      {
+        title: "Overview",
+        content: `Demonstrates all FHE permission patterns: allowThis, allow, and allowTransient.
+
+## Key Concepts
+
+- **allowThis**: Contract permission for operations
+- **allow**: User permission for decryption
+- **allowTransient**: Temporary permissions for view functions
+- **Shared Values**: Multiple parties accessing same encrypted data`,
+      },
+      {
+        title: "Permission Patterns",
+        content: `### Basic Pattern
+\`\`\`solidity
+FHE.allowThis(encryptedValue);  // Contract can operate
+FHE.allow(encryptedValue, user); // User can decrypt
+\`\`\`
+
+### Shared Access
+\`\`\`solidity
+FHE.allow(sharedValue, user1);
+FHE.allow(sharedValue, user2);
+\`\`\`
+
+### Transient (View Functions)
+\`\`\`solidity
+FHE.allowTransient(tempValue, user);
+\`\`\``,
+      },
+    ],
+  },
+  "comparison-operations": {
+    name: "comparison-operations",
+    title: "Comparison Operations",
+    description: "Complete guide to FHE comparison operations and conditional logic",
+    category: "basic",
+    sections: [
+      {
+        title: "Overview",
+        content: `Demonstrates all FHE comparison operations: eq, ne, lt, lte, gt, gte, min, max, and select.
+
+## Key Concepts
+
+- **Equality**: FHE.eq() and FHE.ne()
+- **Ordering**: FHE.lt(), FHE.lte(), FHE.gt(), FHE.gte()
+- **Min/Max**: FHE.min() and FHE.max()
+- **Conditional**: FHE.select() for if-then-else logic
+- **Encrypted Booleans**: Working with ebool type`,
+      },
+      {
+        title: "Core Operations",
+        content: `### Comparison Functions
+\`\`\`solidity
+ebool isEqual = FHE.eq(value1, value2);
+ebool isLess = FHE.lt(value1, value2);
+euint32 maximum = FHE.max(value1, value2);
+\`\`\`
+
+### Conditional Selection
+\`\`\`solidity
+ebool condition = FHE.gt(newValue, threshold);
+result = FHE.select(condition, newValue, oldValue);
+\`\`\``,
+      },
+    ],
+  },
+  "user-decryption": {
+    name: "user-decryption",
+    title: "User Decryption",
+    description: "Demonstrates how users decrypt their encrypted data off-chain",
+    category: "decryption",
+    sections: [
+      {
+        title: "Overview",
+        content: `Shows the complete flow for user decryption of encrypted values.
+
+## Key Concepts
+
+- **Permission Grants**: Proper allowThis and allow for decryption
+- **Single Value**: Decrypt one encrypted value
+- **Multiple Values**: Decrypt multiple values at once
+- **Shared Decryption**: Grant decryption rights to others
+- **Off-Chain Flow**: How users decrypt with their private key`,
+      },
+      {
+        title: "Decryption Pattern",
+        content: `### On-Chain Storage
+\`\`\`solidity
+FHE.allowThis(encryptedValue);
+FHE.allow(encryptedValue, msg.sender);
+\`\`\`
+
+### Off-Chain Decryption
+\`\`\`typescript
+const encrypted = await contract.getEncryptedValue32();
+const decrypted = await fhevm.decrypt(encrypted, userKey);
+\`\`\``,
+      },
+    ],
+  },
+  "anti-patterns": {
+    name: "anti-patterns",
+    title: "Anti-Patterns and Common Mistakes",
+    description: "Learn what NOT to do - common FHEVM mistakes and correct patterns",
+    category: "bestpractices",
+    sections: [
+      {
+        title: "Overview",
+        content: `Comprehensive guide to avoiding common FHEVM development mistakes.
+
+## Common Anti-Patterns
+
+1. Missing input proof validation
+2. Missing allowThis permission
+3. View functions with encrypted returns
+4. Forgetting permissions after operations
+5. Signer mismatches
+6. Not checking initialization
+7. Exposing encrypted values in events
+8. Using regular arithmetic operators`,
+      },
+      {
+        title: "Key Lessons",
+        content: `### ❌ Wrong: No Input Proof
+\`\`\`solidity
+euint32 value = FHE.fromExternal(encValue); // WRONG!
+\`\`\`
+
+### ✅ Correct: With Input Proof
+\`\`\`solidity
+euint32 value = FHE.fromExternal(encValue, inputProof);
+\`\`\`
+
+### ❌ Wrong: Missing allowThis
+\`\`\`solidity
+FHE.allow(value, user); // INCOMPLETE!
+\`\`\`
+
+### ✅ Correct: Both Permissions
+\`\`\`solidity
+FHE.allowThis(value);
+FHE.allow(value, user);
+\`\`\``,
+      },
+    ],
+  },
   "private-lottery": {
     name: "private-lottery",
     title: "Private Lottery",
